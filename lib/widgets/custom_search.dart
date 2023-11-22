@@ -70,6 +70,31 @@ class CustomSearch extends SearchDelegate {
 
         final matchQuery = snapshot.data!;
 
+        if (matchQuery.isEmpty) {
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.red,
+                ),
+                child: const Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.info_outline, size: 150),
+                    Text('The artist provided not found...',
+                        style: TextStyle(
+                          fontSize: 30,
+                        ),
+                        textAlign: TextAlign.center),
+                  ],
+                ),
+              ),
+            ),
+          );
+        }
+
         return ListView.builder(
           itemCount: matchQuery.length,
           itemBuilder: (context, index) {
